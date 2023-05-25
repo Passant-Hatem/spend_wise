@@ -31,6 +31,11 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Spend Wise'),
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.add))
+      ],),
       body: Column(
         children: [
           const Text('The chart'),
