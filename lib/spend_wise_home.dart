@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spend_wise/widgets/add_new_expense.dart';
 import 'package:spend_wise/widgets/expense_item.dart';
 
 import 'models/expense.dart';
@@ -28,14 +29,23 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
     ),
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const AddNewExpense(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Spend Wise'),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.add))
-      ],),
+          IconButton(
+              onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))
+        ],
+      ),
       body: Column(
         children: [
           const Text('The chart'),
