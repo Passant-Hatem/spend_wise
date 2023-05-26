@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/expense.dart';
-import '../models/utils.dart';
+import 'models/expense.dart';
+import 'models/utils.dart';
 
 class AddNewExpense extends StatefulWidget {
   const AddNewExpense({super.key, required this.onAddExpense});
