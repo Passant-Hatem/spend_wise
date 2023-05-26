@@ -1,38 +1,30 @@
 import 'package:flutter/material.dart';
-
 import '../models/expense.dart';
+import 'expenses_item.dart';
 
-class ExpenseItem extends StatelessWidget {
-  const ExpenseItem(this.expense, {super.key});
+class ExpensesList extends StatelessWidget {
+  const ExpensesList(
+      {super.key, required this.expenses, required this.onRemoveExpense});
 
-  final Expense expense;
+  final List<Expense> expenses;
+  final void Function(Expense) onRemoveExpense;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 16,
-        ),
-        child: Column(
-          children: [
-            Text(expense.title),
-            const SizedBox(height: 4),
-            Row(
-              children: [
-                Text('\$${expense.amount.toStringAsFixed(2)}'),
-                const Spacer(),
-                Row(
-                  children: [
-                    Icon(categoryIcons[expense.category]),
-                    const SizedBox(width: 8),
-                    Text(expense.formattedDate),
-                  ],
-                ),
-              ],
-            ),
-          ],
+    return ListView.builder(
+      itemCount: expenses.length,
+      itemBuilder: (ctx, index) => Dismissible(
+        key: ValueKey(expenses[index]),
+        background: Container(
+            color: Theme.of(context).colorScheme.error,
+            margin: EdgeInsets.symmetric(
+              horizontal: Theme.of(context).cardTheme.margin!.horizontal,
+            )),
+        onDismissed: (direction) {
+          onRemoveExpense(expenses[index]);
+        },
+        child: ExpenseItem(
+          expenses[index],
         ),
       ),
     );

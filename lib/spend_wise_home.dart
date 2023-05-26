@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spend_wise/add_new_expense.dart';
-import 'package:spend_wise/widgets/expense_item.dart';
+import 'package:spend_wise/widgets/expenses_list.dart';
 
 import 'models/expense.dart';
 import 'models/utils.dart';
@@ -40,13 +40,13 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
     );
   }
 
-  void _addNewExpense(Expense expense){
+  void _addNewExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
-    void _removeExpense(Expense expense) {
+  void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
@@ -70,7 +70,6 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
 
   @override
   Widget build(BuildContext context) {
-
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some!'),
     );
