@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spend_wise/add_new_expense.dart';
-import 'package:spend_wise/widgets/expenses_list.dart';
+import 'package:spend_wise/widgets/chart/chart.dart';
+import 'package:spend_wise/widgets/expenses_list/expenses_list.dart';
 
 import 'models/expense.dart';
 import 'models/utils.dart';
@@ -91,7 +92,7 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
       ),
       body: Column(
         children: [
-          const Text('The chart'),
+          Chart(expenses: _registeredExpenses),
           Expanded(
             child: mainContent,
           ),
