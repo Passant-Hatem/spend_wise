@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:spend_wise/models/utils.dart';
 import 'package:uuid/uuid.dart';
 
-final dateFormater = DateFormat.yMd();
-
 const uuid = Uuid();
-
-enum Category { food, travel, leisure, work }
 
 const categoryIcons = {
   Category.food: Icons.lunch_dining,
