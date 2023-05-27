@@ -16,6 +16,7 @@ class SpendWiseHome extends StatefulWidget {
 }
 
 class _SpendWiseHomeState extends State<SpendWiseHome> {
+  //TODO store data in local database
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Flutter Course',
@@ -33,6 +34,7 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: (ctx) => AddNewExpense(
@@ -71,6 +73,8 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some!'),
     );
@@ -90,14 +94,23 @@ class _SpendWiseHomeState extends State<SpendWiseHome> {
               onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(children: [
+              Expanded(
+                child: Chart(expenses: _registeredExpenses),
+              ),
+              Expanded(
+                child: mainContent,
+              ),
+            ]),
     );
   }
 }
